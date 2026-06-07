@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsidian Plagiarism Engine - Advanced DSA String Analytics</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-glow"></div>
+                <i class="fa-solid fa-shield-halved brand-icon"></i>
+                <div class="brand-text">
+                    <h2>OBSIDIAN</h2>
+                    <span>Plagiarism Engine</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-target="analyze-section">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Hub
+                </button>
+                <button class="nav-btn" data-target="corpus-section">
+                    <i class="fa-solid fa-database"></i> Corpus Repository
+                </button>
+                <button class="nav-btn" data-target="simulator-section">
+                    <i class="fa-solid fa-laptop-code"></i> Virtual Simulator
+                </button>
+                <button class="nav-btn" data-target="agents-section">
+                    <i class="fa-solid fa-users-gear"></i> AI Agent Consultation
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="pulse-dot green"></span>
+                    <span class="status-label">Local Engine: Connected</span>
+                </div>
+                <div class="complexity-badge">
+                    <span class="badge-title">DSA Complexity</span>
+                    <span class="badge-value">O(N + M) KMP</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-context">
+                    <h1>Academic Integrity String Analytics</h1>
+                    <p>Sub-linear average search time via Locality Sensitive Hashing (LSH) & Winnowing Fingerprints</p>
+                </div>
+                <div class="user-panel">
+                    <span class="profile-role">Principal Engineer</span>
+                    <div class="avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- ================= ANALYZE HUB SECTION ================= -->
+                <section id="analyze-section" class="tab-content active">
+                    <div class="dashboard-grid">
+                        <!-- Left Pane: Input text -->
+                        <div class="card editor-card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-keyboard text-cyan"></i> Document Submission</h3>
+                                <div class="card-actions">
+                                    <button id="clear-btn" class="btn btn-outline btn-sm"><i class="fa-solid fa-trash-can"></i> Clear</button>
+                                    <button id="sample-btn" class="btn btn-outline btn-sm"><i class="fa-solid fa-file-import"></i> Load Plagiarized Sample</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <textarea id="submission-text" placeholder="Paste the student manuscript or article submission here to initiate structural, fingerprint, and exact KMP sequence matching comparisons..."></textarea>
+                            </div>
+                            <div class="card-footer">
+                                <span class="character-count">Words: <span id="word-count">0</span> | Characters: <span id="char-count">0</span></span>
+                                <button id="analyze-btn" class="btn btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Compare Submission</button>
+                            </div>
+                        </div>
+
+                        <!-- Right Pane: Summary/Score Dashboard -->
+                        <div class="card stats-card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-chart-line text-magenta"></i> Similarity Overview</h3>
+                            </div>
+                            <div class="card-body stats-body">
+                                <div class="score-radial-container">
+                                    <div class="score-radial">
+                                        <svg>
+                                            <circle cx="80" cy="80" r="70"></circle>
+                                            <circle cx="80" cy="80" r="70" id="score-progress"></circle>
+                                        </svg>
+                                        <div class="score-display">
+                                            <span id="score-percentage">0%</span>
+                                            <span class="score-label">OVERALL MATCH</span>
+                                        </div>
+                                    </div>
+                                    <div class="score-legend">
+                                        <div class="legend-item"><span class="legend-dot green"></span> < 15% Safe</div>
+                                        <div class="legend-item"><span class="legend-dot yellow"></span> 15% - 50% Suspicious</div>
+                                        <div class="legend-item"><span class="legend-dot red"></span> > 50% Plagiarized</div>
+                                    </div>
+                                </div>
+
+                                <div class="metrics-breakdown">
+                                    <div class="metric-progress-wrapper">
+                                        <div class="metric-meta">
+                                            <span>Exact KMP / Rabin-Karp Coverage</span>
+                                            <span id="metric-exact-val">0%</span>
+                                        </div>
+                                        <div class="progress-bar-bg">
+                                            <div class="progress-bar-fill progress-cyan" id="metric-exact-bar" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="metric-progress-wrapper">
+                                        <div class="metric-meta">
+                                            <span>Winnowing Fingerprint Match</span>
+                                            <span id="metric-winnow-val">0%</span>
+                                        </div>
+                                        <div class="progress-bar-bg">
+                                            <div class="progress-bar-fill progress-magenta" id="metric-winnow-bar" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="metric-progress-wrapper">
+                                        <div class="metric-meta">
+                                            <span>TF-IDF Vector Similarity</span>
+                                            <span id="metric-tfidf-val">0%</span>
+                                        </div>
+                                        <div class="progress-bar-bg">
+                                            <div class="progress-bar-fill progress-purple" id="metric-tfidf-bar" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="metric-progress-wrapper">
+                                        <div class="metric-meta">
+                                            <span>4-Gram Jaccard Index</span>
+                                            <span id="metric-jaccard-val">0%</span>
+                                        </div>
+                                        <div class="progress-bar-bg">
+                                            <div class="progress-bar-fill progress-blue" id="metric-jaccard-bar" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Workspace: Visible after analysis -->
+                    <div id="comparison-workspace" class="comparison-workspace hidden">
+                        <div class="card comparison-card">
+                            <div class="card-header border-cyan">
+                                <h3><i class="fa-solid fa-code-compare"></i> Side-by-Side Highlighted Comparison</h3>
+                                <div class="candidate-selector-wrapper">
+                                    <label for="candidate-select">Matched Source:</label>
+                                    <select id="candidate-select">
+                                        <!-- Dynamically populated -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-body comparison-view-grids">
+                                <div class="text-pane-container">
+                                    <div class="pane-title"><i class="fa-solid fa-file-invoice"></i> Submission Text</div>
+                                    <div id="submission-highlight-pane" class="highlight-pane">
+                                        <!-- Highlighted content -->
+                                    </div>
+                                </div>
+                                <div class="text-pane-container">
+                                    <div class="pane-title"><i class="fa-solid fa-file-contract"></i> Referenced Source Text (<span id="matched-source-id">None</span>)</div>
+                                    <div id="reference-highlight-pane" class="highlight-pane">
+                                        <!-- Highlighted content -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer matching-summary">
+                                <div class="matching-stats-line">
+                                    <span class="match-indicator exact"><i class="fa-solid fa-check-double"></i> Exact Overlap (Rabin-Karp)</span>
+                                    <span class="match-indicator fuzzy"><i class="fa-solid fa-wave-square"></i> Fingerprint Match (Winnowing)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= CORPUS REPOSITORY SECTION ================= -->
+                <section id="corpus-section" class="tab-content">
+                    <div class="dashboard-grid grid-1-3">
+                        <!-- Add Document Form -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-folder-plus text-cyan"></i> Index New Reference</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="add-doc-form">
+                                    <div class="form-group">
+                                        <label for="doc-id-input">Document ID / File Name</label>
+                                        <input type="text" id="doc-id-input" placeholder="e.g., neural_network_chapter.txt" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="doc-text-input">Raw Text Content</label>
+                                        <textarea id="doc-text-input" placeholder="Paste reference materials, papers, or textbooks here to expand the Locality Sensitive Hashing comparison indices..." required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-full"><i class="fa-solid fa-cloud-arrow-up"></i> Index to Repository</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Database Index Status -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-server text-magenta"></i> Indexed Document Repositories</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="indexed-list-container">
+                                    <table class="indexed-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Document Reference ID</th>
+                                                <th>Access Key</th>
+                                                <th>Indexing Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="indexed-docs-body">
+                                            <!-- Dynamically populated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= VIRTUAL SIMULATOR SECTION ================= -->
+                <section id="simulator-section" class="tab-content">
+                    <div class="card simulator-card">
+                        <div class="card-header">
+                            <h3><i class="fa-solid fa-laptop-code text-cyan"></i> Knuth-Morris-Pratt (KMP) LPS Array Simulator</h3>
+                            <div class="simulator-controls">
+                                <input type="text" id="sim-pattern" value="abacaba" placeholder="Enter string (e.g. abacaba)">
+                                <button id="start-sim-btn" class="btn btn-primary btn-sm"><i class="fa-solid fa-play"></i> Initialize</button>
+                            </div>
+                        </div>
+                        <div class="card-body simulator-body">
+                            <p class="sim-explainer">The Longest Prefix Suffix (LPS) array allows KMP to bypass redundant comparisons. Below is a live traceback of how the pre-processing automaton works.</p>
+                            
+                            <div class="sim-visualizer-container">
+                                <!-- String blocks -->
+                                <div class="sim-string-row" id="sim-chars-row">
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <div class="sim-string-row" id="sim-lps-row">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+
+                            <div class="sim-action-card">
+                                <div class="sim-stat-item">
+                                    <span class="label">Step Index:</span>
+                                    <span id="sim-step-idx" class="value text-cyan">0 / 0</span>
+                                </div>
+                                <div class="sim-stat-item">
+                                    <span class="label">Pointer (i):</span>
+                                    <span id="sim-pointer-i" class="value text-magenta">0</span>
+                                </div>
+                                <div class="sim-stat-item">
+                                    <span class="label">Matched Length:</span>
+                                    <span id="sim-pointer-len" class="value text-yellow">0</span>
+                                </div>
+                                <div class="sim-stat-item full-width">
+                                    <span class="label">Verification Expression:</span>
+                                    <span id="sim-comparison" class="value text-white font-mono">None</span>
+                                </div>
+                                <div class="sim-stat-item full-width">
+                                    <span class="label">Current Action:</span>
+                                    <span id="sim-action-desc" class="value text-sub">Initialize string indices.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer simulator-nav-footer">
+                            <button id="prev-sim-btn" class="btn btn-outline" disabled><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                            <button id="next-sim-btn" class="btn btn-outline" disabled>Next <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ================= AI AGENTS CONSULTATION SECTION ================= -->
+                <section id="agents-section" class="tab-content">
+                    <div class="agents-layout">
+                        <!-- Left Panel: Conversation log -->
+                        <div class="card agents-convo-card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-comments-pie text-cyan"></i> Multi-Agent Integrity Consultation Log</h3>
+                                <button id="trigger-consultation" class="btn btn-primary btn-sm" disabled><i class="fa-solid fa-brain"></i> Trigger Consultation</button>
+                            </div>
+                            <div class="card-body agents-convo-body" id="agents-chat-log">
+                                <div class="chat-placeholder">
+                                    <i class="fa-solid fa-network-wired"></i>
+                                    <p>Select a candidate match and analyze a document above. Once analyzed, you can trigger a multi-agent consultation to evaluate academic integrity risks, optimization paths, and policy recommendations.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Agent Statuses -->
+                        <div class="agents-sidebar">
+                            <!-- Decision Agent Card -->
+                            <div class="agent-profile-card">
+                                <div class="agent-avatar avatar-decision"><i class="fa-solid fa-gavel"></i></div>
+                                <div class="agent-info">
+                                    <h4>Decision Agent</h4>
+                                    <p>Computes overall severity and makes disciplinary policies or grading recommendations.</p>
+                                    <span class="agent-status-tag active">Awaiting Report</span>
+                                </div>
+                            </div>
+
+                            <!-- Optimization Agent Card -->
+                            <div class="agent-profile-card">
+                                <div class="agent-avatar avatar-optimization"><i class="fa-solid fa-gears"></i></div>
+                                <div class="agent-info">
+                                    <h4>Optimization Agent</h4>
+                                    <p>Tracks search bottlenecks, parameters ($k$, $t$), and manages LSH bucket configuration.</p>
+                                    <span class="agent-status-tag active">Ready</span>
+                                </div>
+                            </div>
+
+                            <!-- Risk Detection Agent Card -->
+                            <div class="agent-profile-card">
+                                <div class="agent-avatar avatar-risk"><i class="fa-solid fa-user-secret"></i></div>
+                                <div class="agent-info">
+                                    <h4>Risk Detection Agent</h4>
+                                    <p>Identifies attempts to circumvent detection (e.g., zero-width spaces, homoglyphs).</p>
+                                    <span class="agent-status-tag active">Ready</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <!-- Script -->
+    <script src="main.js"></script>
+</body>
+</html>

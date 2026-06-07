@@ -1,0 +1,6 @@
+fastapi>=0.100.0
+uvicorn>=0.22.0
+scikit-learn>=1.0.0
+numpy>=1.20.0
+pydantic>=2.0.0
+# mmh3 is optional; the application implements a pure Python Murmur3 fallback to ensure out-of-the-box compatibility on Windows.
