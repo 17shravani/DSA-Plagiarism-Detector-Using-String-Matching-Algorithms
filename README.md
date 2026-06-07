@@ -1,5 +1,7 @@
 # Obsidian Plagiarism Engine - String Matching & DSA Analytics
 
+<img width="1918" height="910" alt="Screenshot 2026-06-07 184539" src="https://github.com/user-attachments/assets/365b397d-ba8b-4c38-b537-d04c3b04fb8f" />
+
 An enterprise-grade, high-performance plagiarism detection pipeline combining classic string-matching algorithms, locality-sensitive hashing, and vector space similarity models. Designed with a custom glassmorphism dark-themed dashboard, real-time automaton simulators, and an interactive multi-agent integrity review panel.
 
 ---
